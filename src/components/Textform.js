@@ -77,6 +77,8 @@ export default function Textform(props) {
     let text = document.getElementById("mybox")
     text.select()
     //  text.setselectionRange(0,9999);
+   window.getSelection().removeAllRanges()      //remove select which is blue
+  //  document.getSelection().removeAllRanges()       1
     navigator.clipboard.writeText(text.value)
   }
 
@@ -89,24 +91,24 @@ export default function Textform(props) {
 
   return (
     <>
-      <div className='container'>
-        <h1  className="text-center">{props.heading}-{/*{text}*/}</h1>
+      <div className='container' style={{color : props.mode === "dark"? "White":"black"}}>
+        <h1  className="text-center ">Text-U-{props.heading}{/*{text}*/}</h1>
         <div className="form-group">
-          <textarea  className="form-control" value={text} onChange={valueChange} id="mybox" rows="10" style={{backgroundColor : props.toggleMode === "light"? "grey" :"light"}}></textarea>
+          <textarea  className="form-control" value={text} onChange={valueChange} id="mybox" rows="10" style={{backgroundColor : props.mode === "light"? "White":"#121029",color : props.mode === "light"? "black":"white"}}></textarea>
         </div>
-        <button className="btn btn-primary mx-1" onClick={handleupClick}>Convert to Uppercase</button>
-        <button className="btn btn-warning mx-1" onClick={handlelowClick}>Convert to Lowerrcase</button>
-        <button className="btn btn-danger mx-1" onClick={handleclearClick}>Clear all Text</button>
-        <button className="btn btn-success mx-1" onClick={handleboldClick}>Bold to Text</button>
-        <button className="btn btn-success mx-1" onClick={handlefstyleClick}>Change Font Style</button>
-        <button className="btn btn-dark mx-1" onClick={handledarkClick}>Change to Darkmode</button>
-        <button className="btn btn-danger mx-1" onClick={handlecopyClick}>Copy text</button>
-        <button className="btn btn-warning mx-1 my-3" onClick={handlespacelick}>Remove spaces</button>
+        <button  disabled={text.length === 0}  className="btn btn-primary mx-1 my-2" onClick={handleupClick}>Convert to Uppercase</button>
+        <button disabled={text.length === 0}  className="btn btn-warning mx-1 my-2" onClick={handlelowClick}>Convert to Lowerrcase</button>
+        <button  disabled={text.length === 0} className="btn btn-danger mx-1 my-2" onClick={handleclearClick}>Clear all Text</button>
+        <button  disabled={text.length === 0} className="btn btn-success mx-1 my-2" onClick={handleboldClick}>Bold to Text</button>
+        <button  disabled={text.length === 0} className="btn btn-success mx-1 my-2" onClick={handlefstyleClick}>Change Font Style</button>
+        <button disabled={text.length === 0}  className="btn btn-dark mx-1 my-2" onClick={handledarkClick}>Change to Darkmode</button>
+        <button disabled={text.length === 0}  className="btn btn-danger mx-1 my-2" onClick={handlecopyClick}>Copy text</button>
+        <button disabled={text.length === 0}  className="btn btn-warning mx-1 my-3" onClick={handlespacelick}>Remove spaces</button>
       </div>
-      <div className="container my-2">
+      <div className="container my-2" style={{color : props.mode === "dark"? "White":"black"}}>
         <h2>Your text summary</h2>
-        <p>{text.trim().split(" ").length} Word  and {text.trim().length} Character</p>
-        <p>{0.008 * text.split(" ").length} Minutes read</p>
+        <p>{text.split(" ").filter(e=>{return e.length !==0}).length} Word  and {text.trim().length} Character</p>
+        <p>{0.008 * text.split(" ").filter(e=>{return e.length !==0}).length} Minutes read</p>
         <h2>Preview</h2>
         <p>{text.length>0 ? text:"Enter Text For Preview" }</p>
       </div>

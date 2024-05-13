@@ -6,8 +6,7 @@
 //   roll:"<b>sanjay</b>"    //can,t work this type because react sentaize external js
 // }
 
-import   { useState } from "react";
-
+import   {  useState } from "react";
 import Navbar from "./components/Navbar";
 import Textform from "./components/Textform";
 // import About from "./components/Abouts";
@@ -40,7 +39,7 @@ setTimeout(() => {
     if(mode === "light" ){
       setMode("dark")
     showAlert("Dark Mode Enable","warning")
-document.body.style.backgroundColor = "grey"
+document.body.style.backgroundColor = "#121029"
 document.title ="Text-U:Dark Mode"
 
     }
@@ -66,12 +65,11 @@ document.title ="Text-U:Dark Mode"
        <div className="container">
         {/* <Routes> */}
           {/* <Route exact path="/" element ={<comoponentNAme/>}> */}
-
-          <Textform heading="Enter the text to analiyze below " showAlert={showAlert} toggleMode ={toggleMode}/>
-
+          {/* <Route exact path="/" element ={<Component/>}> */}
+          <Textform heading="Enter the text to analiyze below " mode={mode} showAlert={showAlert} toggleMode ={toggleMode}/>
           {/* </Route>    */}
-          {/* <Route exact path="/about" element={<About/>}></Route>                                
-          </Routes> */}
+          {/* <Route exact path="/about" element={<About/>}></Route>                                 */}
+          {/* </Routes> */}
         </div>    
         {/* </Router> */}
     </>                         
